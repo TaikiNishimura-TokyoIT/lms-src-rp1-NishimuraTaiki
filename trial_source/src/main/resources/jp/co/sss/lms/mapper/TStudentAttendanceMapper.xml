@@ -39,6 +39,18 @@
 			AND t1.delete_flg = #{deleteFlg}
 		ORDER BY t2.date ASC
 	</select>
+	
+	<select id="notEnterCount" resultType="boolean">
+	    SELECT
+	        CASE
+	            WHEN COUNT(*) > 0 THEN TRUE
+	            ELSE FALSE
+	        END
+	    FROM t_student_attendance
+	    WHERE (training_start_time IS NULL
+	        OR training_end_time IS NULL)
+	      AND training_date &lt; #{now}
+	</select>
 
 	<insert id="insert" parameterType="jp.co.sss.lms.entity.TStudentAttendance" useGeneratedKeys="true" keyProperty="studentAttendanceId">
 		INSERT INTO t_student_attendance 

@@ -87,6 +87,11 @@
 			return hours + ':' + minutes;
 		}
 	</script>
+	
+	<script th:if="${errMsg != null}" 
+        th:inline="javascript"> 
+    	alert([[${errMsg}]]);
+	</script>
 
 </body>
 </html>

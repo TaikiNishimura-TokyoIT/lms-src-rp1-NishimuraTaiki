@@ -1,6 +1,8 @@
 package jp.co.sss.lms.controller;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jp.co.sss.lms.dto.AttendanceManagementDto;
 import jp.co.sss.lms.dto.LoginUserDto;
 import jp.co.sss.lms.form.AttendanceForm;
+import jp.co.sss.lms.mapper.TStudentAttendanceMapper;
 import jp.co.sss.lms.service.StudentAttendanceService;
 import jp.co.sss.lms.util.Constants;
 
@@ -29,6 +32,8 @@ public class AttendanceController {
 	private StudentAttendanceService studentAttendanceService;
 	@Autowired
 	private LoginUserDto loginUserDto;
+	@Autowired
+	private TStudentAttendanceMapper tStudentAttendanceMapper;
 
 	/**
 	 * 勤怠管理画面 初期表示
@@ -46,6 +51,14 @@ public class AttendanceController {
 		List<AttendanceManagementDto> attendanceManagementDtoList = studentAttendanceService
 				.getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd"); // SimpleDateFormatクラスでフォーマットパターンを設定する
+		Date now = new Date();
+		sdf.format(now); // 現在時刻を取得
+		Boolean bool = tStudentAttendanceMapper.notEnterCount(now); // API呼び出し
+		if (bool == true) {
+			model.addAttribute("errMsg","過去日の勤怠に未入力があります。");
+		}
 
 		return "attendance/detail";
 	}

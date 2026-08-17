@@ -48,6 +48,14 @@ public interface TStudentAttendanceMapper {
 	 */
 	List<AttendanceManagementDto> getAttendanceManagement(@Param("courseId") Integer courseId,
 			@Param("lmsUserId") Integer lmsUserId, @Param("deleteFlg") Short deleteFlg);
+	
+	/**
+	 * 未入力件数取得
+	 * 
+	 * @param now
+	 * @return 判定結果
+	 */
+	Boolean notEnterCount(@Param("now") Date now);
 
 	/**
 	 * 勤怠情報（受講生入力）登録
