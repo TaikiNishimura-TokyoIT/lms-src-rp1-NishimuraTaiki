@@ -122,7 +122,7 @@ public class AttendanceController {
 	@RequestMapping(path = "/update")
 	public String update(Model model) {
 
-		// 勤怠管理リストの取得
+		// 勤怠管理画面用DTOリストの取得
 		List<AttendanceManagementDto> attendanceManagementDtoList = studentAttendanceService
 				.getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
 		// 勤怠フォームの生成
