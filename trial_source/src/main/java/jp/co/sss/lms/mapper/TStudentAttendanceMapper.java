@@ -52,10 +52,13 @@ public interface TStudentAttendanceMapper {
 	/**
 	 * 未入力件数取得
 	 * 
+	 * @param lmsUserId
+	 * @param deleteFlg 
 	 * @param now
 	 * @return 判定結果
 	 */
-	Boolean notEnterCount(@Param("now") Date now);
+	Boolean notEnterCount(@Param("lmsUserId") Integer lmsUserId, @Param("deleteFlg") Short deleteFlg, 
+			@Param("now") Date now);
 
 	/**
 	 * 勤怠情報（受講生入力）登録

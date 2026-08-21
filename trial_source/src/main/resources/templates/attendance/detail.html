@@ -88,9 +88,11 @@
 		}
 	</script>
 	
-	<script th:if="${errMsg != null}" 
-        th:inline="javascript"> 
-    	alert([[${errMsg}]]);
+	<script th:inline="javascript">
+    	const errMsg = /*[[${errMsg}]]*/ null;
+    	if (errMsg !== null) {
+        	alert(errMsg);
+    	}
 	</script>
 
 </body>

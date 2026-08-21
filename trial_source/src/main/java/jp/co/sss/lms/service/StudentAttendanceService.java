@@ -218,6 +218,10 @@ public class StudentAttendanceService {
 		attendanceForm.setLmsUserId(loginUserDto.getLmsUserId());
 		attendanceForm.setUserName(loginUserDto.getUserName());
 		attendanceForm.setLeaveFlg(loginUserDto.getLeaveFlg());
+		attendanceForm.setTrainingStartTimeHour(attendanceUtil.setTrainingStartTimeHour());
+		attendanceForm.setTrainingStartTimeMinute(attendanceUtil.setTrainingStartTimeMinute());
+		attendanceForm.setTrainingEndTimeHour(attendanceUtil.setTrainingEndTimeHour());
+		attendanceForm.setTrainingEndTimeMinute(attendanceUtil.setTrainingEndTimeMinute());
 		attendanceForm.setBlankTimes(attendanceUtil.setBlankTime());
 
 		// 途中退校している場合のみ設定

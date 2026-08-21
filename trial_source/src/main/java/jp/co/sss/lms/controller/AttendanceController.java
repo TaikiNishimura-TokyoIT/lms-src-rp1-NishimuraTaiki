@@ -53,11 +53,27 @@ public class AttendanceController {
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd"); // SimpleDateFormatクラスでフォーマットパターンを設定する
-		Date now = new Date();
-		sdf.format(now); // 現在時刻を取得
-		Boolean bool = tStudentAttendanceMapper.notEnterCount(now); // API呼び出し
-		if (bool == true) {
+		Date now = new Date(); // 現在の日付を取得
+		System.out.println("now："+ now);
+		
+		String nowStr = sdf.format(now);
+		System.out.println("nowStr："+ nowStr);
+		
+		Date nowDate = null;
+		try {
+			nowDate = sdf.parse(nowStr);
+		} catch (ParseException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		System.out.println("nowDate：" + nowDate);
+		
+		Boolean bool = tStudentAttendanceMapper.notEnterCount(loginUserDto.getLmsUserId(),(short)0,nowDate); // API呼び出し
+		
+		if (bool = true) {
 			model.addAttribute("errMsg","過去日の勤怠に未入力があります。");
+		} else {
+		    System.out.println("未入力なし");
 		}
 
 		return "attendance/detail";
