@@ -70,15 +70,6 @@
 											th:selected="${trainingStartTimeHour.key == attendanceForm.trainingStartTimeHour}">
 											[[${trainingStartTimeHour.value}]]</option>
 									</select>
-									<select th:name="|attendanceList[${stat.index}].trainingStartTimeHour|"
-										class="form-control">
-										<option
-											th:each="trainingStartTimeHour : ${attendanceForm.trainingStartTimeHours}"
-											th:value="${trainingStartTimeHour.key}"
-											th:selected="${trainingStartTimeHour.key == dailyAttendanceForm.trainingStartTimeHour}">
-											[[${trainingStartTimeHour.value}]]
-										</option>
-									</select>
 								</td>
 								<td>:</td>
 								<td class="w70">

@@ -1,6 +1,7 @@
 package jp.co.sss.lms.service;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -336,6 +337,52 @@ public class StudentAttendanceService {
 		}
 		// 完了メッセージ
 		return messageUtil.getMessage(Constants.PROP_KEY_ATTENDANCE_UPDATE_NOTICE);
+	}
+
+	/**
+	 * 過去日未入力チェック
+	 * 
+	 * @author NishimuraTaiki - Task.25
+	 * @return 判定結果
+	 * @throws ParseException
+	 */
+	public Boolean notEnterCheck() throws ParseException {
+
+		// SimpleDateFormatクラスでフォーマットパターンを設定
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		// 現在の日付を取得
+		Date now = new Date();
+		//System.out.println("now："+ now);
+
+		// 「yyyy/MM/dd」型の文字列に変換
+		String nowStr = sdf.format(now);
+		Date nowDate = null;
+		// 文字列からDate型へ変換
+		nowDate = sdf.parse(nowStr);
+		//System.out.println("nowDate：" + nowDate);
+
+		// MapperのnotEnterCount呼び出し
+		Integer notEnterCount = tStudentAttendanceMapper.notEnterCount(loginUserDto.getLmsUserId(), (short) 0, nowDate);
+		//System.out.println("notEnterCount：" + notEnterCount);
+
+		Boolean notEnterFlg = null;
+		if (notEnterCount > 0) {
+			notEnterFlg = true;  // カウントが0より大きいならtrue
+		} else {
+			notEnterFlg = false; // そうでないならfalse
+		}
+		//System.out.println("notEnterFlg：" + notEnterFlg)
+
+		return notEnterFlg;
+	}
+	
+	/**
+	 * 出退勤時間フォーマット変換
+	 * 
+	 * @author NishimuraTaiki - Task.26
+	 */
+	public void formatConversion(AttendanceForm attendanceForm) {
+		
 	}
 
 }

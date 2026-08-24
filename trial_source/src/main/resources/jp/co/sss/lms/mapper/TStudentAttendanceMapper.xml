@@ -45,17 +45,18 @@
 		ORDER BY t2.date ASC
 	</select>
 
-	<select id="notEnterCount" resultType="boolean">
+	<select id="notEnterCount" resultType="Integer">
 		SELECT
-		CASE
-		WHEN COUNT(*) > 0 THEN TRUE
-		ELSE FALSE
-		END
-		FROM t_student_attendance
-		WHERE lms_user_id = #{lmsUserId}
-		AND (training_start_time IS NULL
-		OR training_end_time IS NULL)
-		AND training_date &lt; #{now}
+		COUNT(*)
+		FROM t_student_attendance         <!-- テーブル「t_student_attendance」 --> 
+		WHERE lms_user_id = #{lmsUserId}  <!-- lmsUserIdによる特定ユーザーの検索 -->
+		AND delete_flg = #{deleteFlg}     <!-- 削除フラグが0(削除されていない) -->
+		AND training_date &lt; #{nowDate} <!-- 現在日時(nowDate)よりも前の日付 -->
+		AND status != 1                   <!-- 欠席ステータスは除外 -->
+		AND (training_start_time = '' OR
+		training_start_time IS NULL OR    <!-- 出勤時間が未入力 -->
+		training_end_time = '' OR
+		training_end_time IS NULL)        <!-- または、退勤時間が未入力 -->
 	</select>
 
 	<insert id="insert"

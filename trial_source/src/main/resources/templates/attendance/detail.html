@@ -90,6 +90,7 @@
 	
 	<script th:inline="javascript">
     	const errMsg = /*[[${errMsg}]]*/ null;
+    	// errMsgが空でなければ値の中身をalert
     	if (errMsg !== null) {
         	alert(errMsg);
     	}
