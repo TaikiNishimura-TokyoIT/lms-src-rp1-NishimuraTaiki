@@ -1,5 +1,7 @@
 package jp.co.sss.lms.form;
 
+import java.util.LinkedHashMap;
+
 import lombok.Data;
 
 /**
@@ -18,12 +20,24 @@ public class DailyAttendanceForm {
 	private String trainingDate;
 	/** 出勤時間 */
 	private String trainingStartTime;
-	private Integer trainingStartTimeHour;
-	private Integer trainingStartTimeMinute;
-	/** 退勤時間 */
+	/** 出勤時刻：時の選択肢 */
+    private LinkedHashMap<Integer, String> trainingStartTimeHour;
+    /** 出勤時刻：選択されている時 */
+    private Integer trainingStartTimeHourValue;
+    /** 出勤時刻：分の選択肢 */
+    private LinkedHashMap<Integer, String> trainingStartTimeMinute;
+    /** 出勤時刻：選択されている分 */
+    private Integer trainingStartTimeMinuteValue;
+    /** 退勤時間 */
 	private String trainingEndTime;
-	private Integer trainingEndTimeHour;
-	private Integer trainingEndTimeMinute;
+	/** 退勤時刻：時の選択肢 */
+    private LinkedHashMap<Integer, String> trainingEndTimeHour;
+    /** 退勤時刻：選択されている時 */
+    private Integer trainingEndTimeHourValue;
+    /** 退勤時刻：分の選択肢 */
+    private LinkedHashMap<Integer, String> trainingEndTimeMinute;
+    /** 退勤時刻：選択されている分 */
+    private Integer trainingEndTimeMinuteValue;
 	/** 中抜け時間 */
 	private Integer blankTime;
 	/** 中抜け時間（画面表示用） */

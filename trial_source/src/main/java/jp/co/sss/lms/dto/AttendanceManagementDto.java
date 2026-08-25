@@ -21,5 +21,10 @@ public class AttendanceManagementDto extends StudentAttendanceDto {
 	private String blankTimeValue;
 	/** セクション名 */
 	private String sectionName;
+	/** 出勤時間 */
+	private String trainingStartTime;
+	/** 退勤時間 */
+	private String trainingEndTime;
+	
 
 }
