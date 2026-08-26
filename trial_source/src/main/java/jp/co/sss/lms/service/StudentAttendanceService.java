@@ -434,9 +434,7 @@ public class StudentAttendanceService {
 
 		// 「yyyy/MM/dd」型の文字列に変換
 		String nowStr = sdf.format(now);
-		Date nowDate = null;
-		// 文字列からDate型へ変換
-		nowDate = sdf.parse(nowStr);
+		Date nowDate = sdf.parse(nowStr);
 		//System.out.println("nowDate：" + nowDate);
 
 		// MapperのnotEnterCount呼び出し

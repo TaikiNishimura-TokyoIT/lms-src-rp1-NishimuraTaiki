@@ -55,11 +55,11 @@ public interface TStudentAttendanceMapper {
 	 * @author NishimuraTaiki - Task.25
 	 * @param lmsUserId
 	 * @param deleteFlg 
-	 * @param nowDate
+	 * @param trainingDate
 	 * @return 判定結果
 	 */
 	Integer notEnterCount(@Param("lmsUserId") Integer lmsUserId, @Param("deleteFlg") Short deleteFlg, 
-			@Param("nowDate") Date nowDate);
+			@Param("trainingDate") Date trainingDate);
 
 	/**
 	 * 勤怠情報（受講生入力）登録

@@ -125,10 +125,14 @@
 					<th:block th:if="${session.loginUserDto.role == '0001'}">
 						<a th:href="@{/attendance/detail}" class="btn btn-default">戻る</a>
 					</th:block>
+
 					<th:block th:if="${session.loginUserDto.role != '0001'}">
 						<input type="submit" value="戻る" name="indexCompany" class="btn btn-default" />
 					</th:block>
-					<input type="submit" value="更新" name="complete" class="btn btn-info" />
+
+					<!-- 更新確認ダイアログを追加 -->
+					<input type="submit" value="更新" name="complete" class="btn btn-info"
+						onclick="return confirm('更新します。よろしいですか？');" />
 				</div>
 
 			</form>

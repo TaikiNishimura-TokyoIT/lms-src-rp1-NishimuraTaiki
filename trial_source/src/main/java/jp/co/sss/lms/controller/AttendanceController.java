@@ -49,7 +49,7 @@ public class AttendanceController {
 
 		Boolean notEnterFlg = studentAttendanceService.notEnterCheck(); // API呼び出し(Service)
 
-		if (notEnterFlg == true) { // APIからtrueが返ってきた場合にはerrMsgに値を入れてスコープへ保存
+		if (notEnterFlg) { // APIからtrueが返ってきた場合にはerrMsgに値を入れてスコープへ保存
 			model.addAttribute("errMsg", "過去日の勤怠に未入力があります。");
 		}
 
