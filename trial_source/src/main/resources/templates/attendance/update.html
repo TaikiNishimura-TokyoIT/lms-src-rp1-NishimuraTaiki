@@ -56,7 +56,8 @@
 								<td class="w140">[[${dailyAttendanceForm.dispTrainingDate}]]</td> <!-- 日付 -->
 								<td class="w140">[[${dailyAttendanceForm.sectionName}]]</td> <!-- コース内容 -->
 								<td class="w60">
-									<input type="submit" value="定時" name="" class="" /> <!-- 「定時」ボタン -->
+									<button type="button" class="btn btn-success"
+										onclick="setRegularTime(this);">定時</button>
 								</td>
 								<!-- 出勤 -->
 								<td class="w70"> <select
@@ -139,6 +140,19 @@
 
 		</div>
 	</div>
+
+	<script>
+		function setRegularTime(button) { // 「定時」ボタンが押された行を取得
+			const row = button.closest('tr');
+			const startHour = row.querySelector('select[name$="trainingStartTimeHourValue"]');
+			const startMinute = row.querySelector('select[name$="trainingStartTimeMinuteValue"]');
+			const endHour = row.querySelector('select[name$="trainingEndTimeHourValue"]');
+			const endMinute = row.querySelector('select[name$="trainingEndTimeMinuteValue"]');
+			setSelectByText(startHour, '09'); setSelectByText(startMinute, '00'); // 出勤 09:00
+			setSelectByText(endHour, '18'); setSelectByText(endMinute, '00');     // 退勤 18:00
+		}
+		function setSelectByText(select, text) {for (const option of select.options) {if (option.text === text) {select.value = option.value; return;} } }
+	</script>
 
 </body>
 
